@@ -24,19 +24,13 @@ services:
       - ./logs:/var/log/gitlab
       - ./data:/var/opt/gitlab
     shm_size: '256m'
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8929/users/sign_in || exit 1"]
-      interval: 30s
-      retries: 10
-      start_period: 60s
 
   gitlab-runner:
     image: gitlab/gitlab-runner:latest
     container_name: gitlab-runner
     restart: always
     depends_on:
-      gitlab:
-        condition: service_healthy
+      - gitlab
     networks:
       - gitlab-net
     volumes:
