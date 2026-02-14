@@ -1,4 +1,9 @@
 
+## start and stop
+```
+docker compose up -d
+docker compose down
+```
 
 ## register runner
 ```shell
@@ -31,7 +36,7 @@ stages:
 hello-job:
   stage: test
   tags:
-    - mac   # 必须和你注册 runner 时填写的 tag 一致
+    - mac
   script:
     - echo "Hello GitLab CI"
     - uname -a
